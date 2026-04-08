@@ -1,6 +1,7 @@
 import time
 import tracemalloc
-from src.functions import sum_even_numbers
+import random
+from src.functions import sum_even_numbers, frequent_element
 
 """
 Часть №1
@@ -11,7 +12,7 @@ from src.functions import sum_even_numbers
 """
 
 
-def run_performance_test(data_size: int):
+def run_performance_test_1(data_size: int):
     print(f"--- Тестирование производительности ({data_size:,} элементов) ---")
 
     # 1. Подготовка данных (вне замера, чтобы не искажать результат)
@@ -39,6 +40,40 @@ def run_performance_test(data_size: int):
     print("-" * 50)
 
 
+def run_performance_test_2(data_size: int):
+    print(f"--- Тестирование производительности ({data_size:,} элементов) ---")
+
+    # 1. Замер производительности (время)
+    # Генерируем данные заранее ОДИН раз, чтобы замерить только работу функции
+    test_data = [random.randint(1, 20000) for _ in range(data_size)]
+
+    start_time = time.perf_counter()
+    result = frequent_element(test_data)
+    end_time = time.perf_counter()
+
+    execution_time = end_time - start_time
+
+    # 2. Замер потребления памяти (честный)
+    tracemalloc.start()
+
+    # Чтобы увидеть РЕАЛЬНЫЙ пик, мы должны создать данные И
+    # запустить функцию внутри одного сеанса tracemalloc
+    internal_data = [random.randint(1, 20000) for _ in range(data_size)]
+    frequent_element(internal_data)
+
+    current, peak = tracemalloc.get_traced_memory()
+    tracemalloc.stop()
+
+    # Освобождаем память для чистоты
+    del internal_data
+
+    # 3. Вывод результатов
+    print(f"Результат (лидер): {result}")
+    print(f"Время выполнения алгоритма: {execution_time:.4f} сек")
+    print(f"Пиковое потребление (данные + словарь): {peak / 10 ** 6:.2f} MB")
+    print("-" * 55)
+
+
 if __name__ == "__main__":
-    # Проверяем на 10^7 элементов
-    run_performance_test(10 ** 7)
+    run_performance_test_1(10 ** 7)
+    run_performance_test_2(10 ** 7)
