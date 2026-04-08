@@ -1,6 +1,7 @@
-![Python Version](https://shields.io)
+![Python](https://shields.io)
 ![Tests](https://shields.io)
 ![Coverage](https://shields.io)
+
 
 # Algorithms Practice 🚀
 
