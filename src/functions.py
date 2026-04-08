@@ -18,7 +18,7 @@ def sum_even_numbers(array: list[int]) -> int:
         if type(number) is bool:
             raise TypeError()
         if not in_range(number, lower_limit, upper_limit):
-            raise ValueError
+            raise ValueError()
 
         if IS_EVEN(number):
             total += number
@@ -38,7 +38,7 @@ def frequent_element(array: list[int]) -> int:
     counts = {}
 
     for number in array:
-        if type(number) is bool:
+        if type(number) is not int:
             raise TypeError()
         if not in_range(number, lower_limit, upper_limit):
             raise ValueError()
