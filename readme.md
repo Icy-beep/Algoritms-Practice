@@ -12,6 +12,43 @@
 
 ## 🛠 Установка
 1. Клонируйте репозиторий:
+
    ```bash
    git clone https://github.com
    cd Algoritms-Practice
+   ```
+
+3. Создайте и активируйте виртуальное окружение:
+
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # Для Linux/macOS
+   .venv\Scripts\activate     # Для Windows
+   ```
+
+4. Установите зависимости для тестирования:
+
+   ```bash
+   pip install pytest pytest-cov
+   ```
+
+## 🧪 Тестирование
+
+Для запуска тестов используйте команду:
+
+   ```bash
+   python -m pytest -v
+   ```
+
+Для проверки покрытия кода тестами:
+
+   ```bash
+   python -m pytest --cov=src tests/
+   ```
+
+## 🏗 Структура проекта
+
+* `src/` — исходный код функций.
+* `tests/` — модульные тесты на pytest с использованием параметризации.
+* `main.py` — точка входа.
+   
