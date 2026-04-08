@@ -1,6 +1,4 @@
-![Python](https://shields.io)
-![Tests](https://shields.io)
-![Coverage](https://shields.io)
+![Static Badge](https://img.shields.io/badge/Python-3.14-brightgreen)
 
 
 # Algorithms Practice 🚀
