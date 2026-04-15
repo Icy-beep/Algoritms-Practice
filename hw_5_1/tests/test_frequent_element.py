@@ -1,5 +1,5 @@
 import pytest
-from src.functions import frequent_element
+from hw_5_1.src.functions import frequent_element
 
 
 # Positive scenarios

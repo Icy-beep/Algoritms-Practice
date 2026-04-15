@@ -1,5 +1,5 @@
 import pytest
-from src.functions import two_sum
+from hw_5_1.src.functions import two_sum
 
 
 # Позитивные тесты и пограничные случаи

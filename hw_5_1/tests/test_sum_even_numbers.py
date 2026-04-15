@@ -1,5 +1,5 @@
 import pytest
-from src.functions import sum_even_numbers
+from hw_5_1.src.functions import sum_even_numbers
 
 
 # Positive scenarios

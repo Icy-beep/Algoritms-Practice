@@ -1,5 +1,3 @@
-from typing import Any
-
 IS_EVEN = lambda number: number % 2 == 0
 
 def sum_even_numbers(array: list[int]) -> int:
