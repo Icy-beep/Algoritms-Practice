@@ -1,8 +1,6 @@
 import pytest
-
 from src.functions import sum_even_numbers
 
-LIMIT = 20_000
 
 # Positive scenarios
 @pytest.mark.parametrize("array, expected", [
@@ -36,24 +34,6 @@ def test_negative_sum_rule(array, expected):
 
 
 # Boundary scenarios
-def test_boundary_exact_positive():
-    """Number is 20_000"""
-    assert sum_even_numbers([LIMIT]) == LIMIT
-
-def test_boundary_exact_negative():
-    """Number is -20_000"""
-    assert sum_even_numbers([-LIMIT]) == 1
-
-def test_boundary_overflow_positive():
-    """Number is 20_002 out of limit ValueError must be called"""
-    with pytest.raises(ValueError):
-        sum_even_numbers([LIMIT + 2])
-
-def test_boundary_overflow_negative():
-    """Number is -20_002 out of limit ValueError must be called"""
-    with pytest.raises(ValueError):
-        sum_even_numbers([-LIMIT - 2])
-
 def test_boundary_max_elements():
     """Тест на большое количество граничных данных (10^5 элементов)"""
     data = [2] * (10**5)

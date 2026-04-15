@@ -1,9 +1,5 @@
 import pytest
-
 from src.functions import frequent_element
-
-LOWER_LIMIT = 1
-UPPER_LIMIT = 2*10**4
 
 
 # Positive scenarios
@@ -23,9 +19,6 @@ def test_frequent_element_positive_cases(array, expected):
 # Boundary scenarios
 @pytest.mark.parametrize("array,expected", [
     ([], 0),                                                            # Пустой список
-    ([UPPER_LIMIT, UPPER_LIMIT, LOWER_LIMIT], UPPER_LIMIT),             # Верхний лимит в результате
-    ([UPPER_LIMIT, LOWER_LIMIT], LOWER_LIMIT),                          # Два лимита одновременно
-    ([LOWER_LIMIT, LOWER_LIMIT, UPPER_LIMIT, UPPER_LIMIT], LOWER_LIMIT),# Два лимита по краям списка
 ])
 def test_frequent_element_boundary_cases(array, expected):
     assert frequent_element(array) == expected
@@ -36,12 +29,10 @@ def test_frequent_element_boundary_cases(array, expected):
     ('', TypeError),                                      # Str вместо списка
     (False, TypeError),                                   # Bool вместо списка
     (True, TypeError),                                    # Bool вместо списка
-    ([True, False, UPPER_LIMIT, LOWER_LIMIT], TypeError), # Bool в списке
+    ([True, False, 1, 2.0, 'aa'], TypeError),             # Разные типы данных в списке
     (3.5, TypeError),                                     # Float вместо списка
     (3, TypeError),                                       # Int вместо списка
     ([3.5, 4.5], TypeError),                              # Float в списке
-    ([LOWER_LIMIT - 12, 1, 2], ValueError),               # За пределами нижнего лимита
-    ([UPPER_LIMIT + 12, 1, 2], ValueError),               # За пределами верхнего лимита
 ])
 def test_frequent_element_negative_cases(array, expected):
     if isinstance(expected, type) and issubclass(expected, Exception):

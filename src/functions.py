@@ -1,24 +1,15 @@
-import typing
-from itertools import count
+from typing import Any
 
 IS_EVEN = lambda number: number % 2 == 0
 
-def in_range(number, low, high):
-    return low <= number <= high
-
 def sum_even_numbers(array: list[int]) -> int:
     if not isinstance(array, list): raise TypeError()
-
-    lower_limit = -2*10**4
-    upper_limit = 2*10**4
 
     total = 0
 
     for number in array:
         if type(number) is bool:
             raise TypeError()
-        if not in_range(number, lower_limit, upper_limit):
-            raise ValueError()
 
         if IS_EVEN(number):
             total += number
@@ -33,15 +24,11 @@ def frequent_element(array: list[int]) -> int:
     if not isinstance(array, list):  raise TypeError()
     if not array:  return 0
 
-    lower_limit = 1
-    upper_limit = 2*10**4
     counts = {}
 
     for number in array:
         if type(number) is not int:
             raise TypeError()
-        if not in_range(number, lower_limit, upper_limit):
-            raise ValueError()
 
         counts[number] = counts.get(number, 0) + 1
 
@@ -58,3 +45,47 @@ def frequent_element(array: list[int]) -> int:
                 leader = number
 
     return leader if leader is not None else 0
+
+'''
+
+Проблема:
+    Дан массив целых чисел `nums` и целое число `target`, 
+        вернуть индексы двух чисел, так чтобы их сумма была равна `target`.
+        
+Для каждого набора входных данных существует одно решение, 
+    также вы не можете использовать один элемент дважды. 
+    
+Ответ можно вернуть в любом порядке.
+
+Пример №1
+
+    Input: nums = [2,7,11,15], target = 9
+    Output: [0,1]
+    Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+    
+Пример №2
+
+    Input: nums = [3,2,4], target = 6
+    Output: [1,2]
+    
+Ограничения:
+
+    2 <= nums.length <= 10^4
+    -10^9 <= nums[i] <= 10^9
+    -10^9 <= target <= 10^9
+    
+'''
+def two_sum(nums: list[int], target: int) -> None | list[int]:
+    if not isinstance(nums, list):  raise TypeError()
+    if not isinstance(target, int): raise TypeError()
+
+    if len(nums) < 2:  return None
+
+    for i in range(len(nums)):
+        if not isinstance(nums[i], int):  raise TypeError()
+        for j in range(i + 1, len(nums)):
+            if not isinstance(nums[j], int):  raise TypeError()
+            if nums[i] + nums[j] == target:
+                return [i, j]
+
+    return None
